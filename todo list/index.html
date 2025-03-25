@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Todo List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css" >
+    </head>
+    <body>
+        <h1>Todo List</h1>
+        <input type="text" id="task" placeholder="Task">
+        <button onclick="addTask()">Add</button>
+        <ul id="list"></ul>
+        <script>
+            function addTask() {
+                let task = document.getElementById("task");
+                if (task === "") {return;}
+                let item = document.createElement("li");
+                let span = document.createElement("span");
+                // prevents users from injecting harmful HTML (e.g., <script> tags) if you used innerHTML
+                span.textContent = task.value.trim();
+                let remove = document.createElement("button");
+                remove.textContent = "x";
+                remove.onclick = function() {
+                    this.parentElement.remove();
+                }
+                item.appendChild(span);
+                item.appendChild(remove);
+                document.getElementById("list").appendChild(item);
+                //clears input field for user
+                task.value = "";
+            }
+        </script>
+</html>
